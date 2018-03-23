@@ -79,7 +79,7 @@
 	</g>
 	</svg>
 	
-	<p>Precio: <span class="text-primary prize"><%=mesa.getPrecio()%> &euro;</span></p> 
+	<p class="text-right">Precio: <span class="text-primary prize"><%=mesa.getPrecio()%> &euro;</span></p> 
 	
 </div>	
 

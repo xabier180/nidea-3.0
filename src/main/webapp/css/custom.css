@@ -6,3 +6,8 @@
 .prize{
 	font-size: 2em;
 }
+
+svg{
+	display:block;
+	margin: auto;
+}
