@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ipartek.formacion.nidea.pojo.Material;
 import com.ipartek.formacion.nidea.pojo.Mesa;
 
 /**
@@ -42,18 +43,22 @@ public class MesaController extends HttpServlet {
 				m.setCustom(false);
 			} else { // viene 'on'
 				m.setCustom(true);
+
+				// color
+				String color = request.getParameter("color");
+				m.setColor(color);
 			}
 
-			String sMaterial = request.getParameter("material");
-			int material = Integer.parseInt(sMaterial);
-			m.setMaterial(material);
+			String sMaterialId = request.getParameter("material");
+			int idMaterial = Integer.parseInt(sMaterialId);
+			m.setMaterial(new Material(idMaterial));
 
 		}
 
 		// enviar atributos a la JSP
 		request.setAttribute("mesa", m);
-		request.setAttribute("materiales", Mesa.MATERIALES_LISTA);
-		request.setAttribute("materialesCodigo", Mesa.MATERIALES_LISTA_CODIGO);
+		request.setAttribute("materiales", Material.NOMBRES);
+		request.setAttribute("materialesCodigo", Material.IDS);
 
 		// ir a la JSP
 		request.getRequestDispatcher("mesa.jsp").forward(request, response);

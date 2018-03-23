@@ -16,27 +16,15 @@ public class Mesa implements Cloneable {
 	 */
 	public static final int PRECIO_PATA = 1;
 	public static final int PRECIO_M2 = 5;
-	public static final int PRECIO_MATERIAL_MADERA = 4;
-	public static final int PRECIO_MATERIAL_ACERO = 6;
-	public static final int PRECIO_MATERIAL_ALUMINIO = 5;
-	public static final int PRECIO_MATERIAL_PLASTICO = 2;
 	public static final int PRECIO_COLOR_CUSTOM = 23;
-	public static final String PRECIO_COLOR_NAME_CUSTOM = "custom";
-
-	public static final int MATERIAL_MADERA = 1;
-	public static final int MATERIAL_ACERO = 2;
-	public static final int MATERIAL_ALUMINIO = 3;
-	public static final int MATERIAL_PLASTICO = 4;
-
-	public static final String[] MATERIALES_LISTA = { "madera", "acero", "aluminio", "plastico" };
-	public static final int[] MATERIALES_LISTA_CODIGO = { 1, 2, 3, 4 };
+	public static final String COLOR_POR_DEFECTO = "#FFF";
 
 	// 4. Atributos siempre PRIVATE para mantener la encapsulacion
 	private int numeroPatas;
 	private int dimension; // metros cuadrados
 	private String color;
 	private boolean custom;
-	private int material;
+	private Material material;
 
 	public Mesa() {
 
@@ -46,10 +34,9 @@ public class Mesa implements Cloneable {
 		// inicializar los atributos
 		this.numeroPatas = 4;
 		this.dimension = 1;
-		this.color = "blanco";
+		this.color = COLOR_POR_DEFECTO; // blanco
 		this.custom = false;
-		this.material = MATERIAL_MADERA;
-
+		this.material = new Material();
 	}
 
 	public boolean isCustom() {
@@ -68,61 +55,11 @@ public class Mesa implements Cloneable {
 		return PRECIO_M2;
 	}
 
-	public static int getPrecioMaterialMadera() {
-		return PRECIO_MATERIAL_MADERA;
-	}
-
-	public static int getPrecioMaterialAcero() {
-		return PRECIO_MATERIAL_ACERO;
-	}
-
-	public static int getPrecioMaterialAluminio() {
-		return PRECIO_MATERIAL_ALUMINIO;
-	}
-
-	public static int getPrecioMaterialPlastico() {
-		return PRECIO_MATERIAL_PLASTICO;
-	}
-
-	public static int getPrecioColorCustom() {
-		return PRECIO_COLOR_CUSTOM;
-	}
-
-	public static String getPrecioColorNameCustom() {
-		return PRECIO_COLOR_NAME_CUSTOM;
-	}
-
-	public static int getMaterialMadera() {
-		return MATERIAL_MADERA;
-	}
-
-	public static int getMaterialAcero() {
-		return MATERIAL_ACERO;
-	}
-
-	public static int getMaterialAluminio() {
-		return MATERIAL_ALUMINIO;
-	}
-
-	public static int getMaterialPlastico() {
-		return MATERIAL_PLASTICO;
-	}
-
-	public static String[] getMaterialesLista() {
-		return MATERIALES_LISTA;
-	}
-
-	public static int[] getMaterialesListaCodigo() {
-		return MATERIALES_LISTA_CODIGO;
-	}
-
-	public Mesa(int material) {
-		this(); // llamar siempre al constructor por defecto
+	public void setMaterial(Material material) {
 		this.material = material;
 	}
 
-	public Mesa(int material, int dimension) {
-		this(material);
+	public Mesa(int dimension) {
 		this.dimension = dimension;
 	}
 
@@ -156,12 +93,8 @@ public class Mesa implements Cloneable {
 		this.color = color;
 	}
 
-	public int getMaterial() {
-		return material;
-	}
-
-	public void setMaterial(int material) {
-		this.material = material;
+	public Material getMaterial() {
+		return this.material;
 	}
 
 	@Override
@@ -183,27 +116,11 @@ public class Mesa implements Cloneable {
 		resul += this.numeroPatas * PRECIO_PATA;
 		resul += this.dimension * PRECIO_M2;
 
-		if (PRECIO_COLOR_NAME_CUSTOM.equalsIgnoreCase(this.color)) {
+		if (!COLOR_POR_DEFECTO.equalsIgnoreCase(this.color)) {
 			resul += PRECIO_COLOR_CUSTOM;
 		}
 
-		switch (this.material) {
-		case MATERIAL_ACERO:
-			resul += PRECIO_MATERIAL_ACERO;
-			break;
-		case MATERIAL_ALUMINIO:
-			resul += PRECIO_MATERIAL_ALUMINIO;
-			break;
-		case MATERIAL_MADERA:
-			resul += PRECIO_MATERIAL_MADERA;
-			break;
-		case MATERIAL_PLASTICO:
-			resul += PRECIO_MATERIAL_PLASTICO;
-			break;
-
-		default:
-			break;
-		}
+		resul += material.getPrecio();
 
 		return resul;
 	}
@@ -214,7 +131,6 @@ public class Mesa implements Cloneable {
 		int result = 1;
 		result = prime * result + ((color == null) ? 0 : color.hashCode());
 		result = prime * result + dimension;
-		result = prime * result + material;
 		result = prime * result + numeroPatas;
 		return result;
 	}
