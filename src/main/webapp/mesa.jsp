@@ -18,36 +18,40 @@
 	<form action="generar-mesa" method="post">
 	
 	
-		<label for="patas">Numero de patas:</label>
-		<input type="number" name="patas" value="<%=mesa.getNumeroPatas()%>" required>
-		<br>
+		<div class="form-group row">
+			<label for="patas" class="col-sm-4 col-form-label">Numero de patas:</label>
+			<input type="number" name="patas" class="col-sm-2 form-control" value="<%=mesa.getNumeroPatas()%>" required>
+		</div>
 		
-		<label for="dimension">Dimension en m2:</label>
-		<input type="number" name="dimension" value="<%=mesa.getDimension()%>" required>
-		<br>
+		<div class="form-group row">
+			<label for="dimension" class="col-sm-4 col-form-label">Dimension en m2:</label>
+			<input type="number" name="dimension" class="col-sm-2 form-control" value="<%=mesa.getDimension()%>" required>
+		</div>
 		
-		<label for="material">Selecciona Material:</label>
-		<select name="material">
-			<% for ( int i=0; i < materiales.length; i++ ) { %>
-				<option value="<%=materialesCodigo[i]%>" 
-				        <%=(mesa.getMaterial().getId()==materialesCodigo[i])?"selected":""%>>
-					<%=materiales[i]%>
-				</option>
-			<% } %>
-		</select>
+		<div class="form-group row">
+			<label for="material" class="col-sm-4 col-form-label">Selecciona Material:</label>
+			<select name="material" class="col-sm-6  form-control">
+				<% for ( int i=0; i < materiales.length; i++ ) { %>
+					<option value="<%=materialesCodigo[i]%>" 
+					        <%=(mesa.getMaterial().getId()==materialesCodigo[i])?"selected":""%>>
+						<%=materiales[i]%>
+					</option>
+				<% } %>
+			</select>
+		</div>	
 	
 	
-		<p>Color: 
-		   <input type="color" value="<%=mesa.getColor()%>" disabled>
-		</p>
-		
-		<p>¿ Quieres Personalizar el Color ? 
-			<input type="checkbox" name="custom" onclick="showColor()" id="custom" <%=(mesa.isCustom())?"checked":""%>>
-			<input type="color" name="color" id="color" value="<%=mesa.getColor()%>"> 
-		</p>
+		<div class="checkbox" onclick="showColor()" >		
+			<p>¿ Quieres Personalizar el Color ? 
+				<input type="checkbox" name="custom" 
+				       id="custom" <%=(mesa.isCustom())?"checked":""%> 
+				       data-toggle="toggle" data-on="Si" data-off="No">
+				<input type="color" name="color" id="color" value="<%=mesa.getColor()%>"> 
+			</p>
+		</div>
 	
 		<br>
-		<input type="submit" value="Calcular Precio">
+		<input type="submit" class="btn btn-outline-primary btn-block" value="Calcular Precio">
 		
 		
 	</form>
@@ -55,7 +59,7 @@
 
 <div class="col-sm-6">	
 
-	<p>Precio: <%=mesa.getPrecio()%> &euro;</p> 
+	
 
 	<svg version="1.1" id="mesa" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 		 style="width:50%;"	
@@ -74,6 +78,9 @@
 			
 	</g>
 	</svg>
+	
+	<p>Precio: <span class="text-primary prize"><%=mesa.getPrecio()%> &euro;</span></p> 
+	
 </div>	
 
 </div>
