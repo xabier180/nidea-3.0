@@ -28,10 +28,14 @@ public class Mesa implements Cloneable {
 	public static final int MATERIAL_ALUMINIO = 3;
 	public static final int MATERIAL_PLASTICO = 4;
 
+	public static final String[] MATERIALES_LISTA = { "madera", "acero", "aluminio", "plastico" };
+	public static final int[] MATERIALES_LISTA_CODIGO = { 1, 2, 3, 4 };
+
 	// 4. Atributos siempre PRIVATE para mantener la encapsulacion
 	private int numeroPatas;
 	private int dimension; // metros cuadrados
 	private String color;
+	private boolean custom;
 	private int material;
 
 	public Mesa() {
@@ -43,8 +47,73 @@ public class Mesa implements Cloneable {
 		this.numeroPatas = 4;
 		this.dimension = 1;
 		this.color = "blanco";
+		this.custom = false;
 		this.material = MATERIAL_MADERA;
 
+	}
+
+	public boolean isCustom() {
+		return custom;
+	}
+
+	public void setCustom(boolean custom) {
+		this.custom = custom;
+	}
+
+	public static int getPrecioPata() {
+		return PRECIO_PATA;
+	}
+
+	public static int getPrecioM2() {
+		return PRECIO_M2;
+	}
+
+	public static int getPrecioMaterialMadera() {
+		return PRECIO_MATERIAL_MADERA;
+	}
+
+	public static int getPrecioMaterialAcero() {
+		return PRECIO_MATERIAL_ACERO;
+	}
+
+	public static int getPrecioMaterialAluminio() {
+		return PRECIO_MATERIAL_ALUMINIO;
+	}
+
+	public static int getPrecioMaterialPlastico() {
+		return PRECIO_MATERIAL_PLASTICO;
+	}
+
+	public static int getPrecioColorCustom() {
+		return PRECIO_COLOR_CUSTOM;
+	}
+
+	public static String getPrecioColorNameCustom() {
+		return PRECIO_COLOR_NAME_CUSTOM;
+	}
+
+	public static int getMaterialMadera() {
+		return MATERIAL_MADERA;
+	}
+
+	public static int getMaterialAcero() {
+		return MATERIAL_ACERO;
+	}
+
+	public static int getMaterialAluminio() {
+		return MATERIAL_ALUMINIO;
+	}
+
+	public static int getMaterialPlastico() {
+		return MATERIAL_PLASTICO;
+	}
+
+	public static String[] getMaterialesLista() {
+		return MATERIALES_LISTA;
+	}
+
+	public static int[] getMaterialesListaCodigo() {
+		return MATERIALES_LISTA_CODIGO;
 	}
 
 	public Mesa(int material) {
