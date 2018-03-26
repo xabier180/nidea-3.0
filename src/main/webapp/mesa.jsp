@@ -2,6 +2,7 @@
 
 <jsp:include page="templates/head.jsp"></jsp:include>
 <jsp:include page="templates/navbar.jsp"></jsp:include>
+<jsp:include page="/templates/alert.jsp"></jsp:include>
 
 <%
 	// recoger atributo del controlador, si es que existe
@@ -12,7 +13,9 @@
 %>
 
 
+
 <div class="row">
+
 
 <div class="col-sm-6">
 	<form action="generar-mesa" method="post">

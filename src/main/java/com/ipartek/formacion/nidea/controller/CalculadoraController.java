@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ipartek.formacion.nidea.pojo.Alert;
+
 /**
  * Servlet implementation class CalculadoraController
  */
@@ -55,12 +57,12 @@ public class CalculadoraController extends HttpServlet {
 
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			request.setAttribute("msg", "Por favor escribe un numero correcto");
+			request.setAttribute("alert", new Alert("Por favor escribe un numero correcto", Alert.TIPO_WARNING));
 			dispatch = request.getRequestDispatcher("views/calculadora/index.jsp");
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("msg", "Disculpe las molestias, tenemos un fallo sin controlar");
+			request.setAttribute("alert", new Alert());
 			dispatch = request.getRequestDispatcher("views/calculadora/index.jsp");
 
 		} finally {

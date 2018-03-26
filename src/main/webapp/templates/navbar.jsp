@@ -6,8 +6,7 @@
 	  </a>	
             
       <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="#">Mesa</a>
-        <a class="p-2 text-dark" href="#">Ejercicios</a>   
+        <a class="p-2 text-dark" href="generar-mesa">Mesa</a>        
         <a class="p-2 text-dark" href="calculadora"> Calculadora</a>     
       </nav>
       <a class="btn btn-outline-primary" href="#">Login</a>
