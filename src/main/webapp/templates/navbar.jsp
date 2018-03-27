@@ -5,7 +5,7 @@
 	  	<img src="img/logo.png" class="logo" alt="Logo Nidea">
 	  </a>	
             
-      <nav class="my-2 my-md-0 mr-md-3">
+      <nav class="my-2 my-md-0 mr-md-10">
         <a class="p-2 text-dark" href="generar-mesa">Mesa</a>        
         <a class="p-2 text-dark" href="calculadora"> Calculadora</a>     
       </nav>
