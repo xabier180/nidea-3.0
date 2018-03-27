@@ -38,7 +38,7 @@ public class MaterialDAO {
 				m = new Material();
 				m.setId(rs.getInt("id"));
 				m.setNombre(rs.getString("nombre"));
-				m.setPrecio(rs.getInt("precio"));
+				m.setPrecio(rs.getFloat("precio"));
 				lista.add(m);
 			}
 

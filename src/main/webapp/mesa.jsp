@@ -33,15 +33,15 @@
 		
 		<div class="form-group row">
 			<label for="material" class="col-sm-4 col-form-label">Selecciona Material:</label>
-			<select name="material" class="col-sm-6  form-control">
+			<select name="materialPrecio" class="col-sm-6  form-control">
 				<% 
-					Material m = null;
+					Material material = null;
 					for ( int i=0; i < materiales.size(); i++ ) {
-						m = materiales.get(i);
+						material = materiales.get(i);
 				%>
-					<option value="<%=m.getId()%>" 
-					        <%=(mesa.getMaterial().getId() == m.getId())?"selected":""%>>
-						<%=m.getNombre()%> - <%=m.getPrecio()%>&euro;
+					<option value="<%=material.getPrecio()%>" 
+					        <%=(mesa.getMaterial().getId() == material.getId())?"selected":""%>>
+						<%=material.getNombre()%> - <%=material.getPrecio()%>&euro;
 					</option>
 				<% } %>
 			</select>

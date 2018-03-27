@@ -64,9 +64,11 @@ public class MesaController extends HttpServlet {
 				m.setColor(color);
 			}
 
-			String sMaterialId = request.getParameter("material");
-			int idMaterial = Integer.parseInt(sMaterialId);
-			m.setMaterial(new Material(idMaterial));
+			// material
+			String sMateriaPrecio = request.getParameter("materialPrecio");
+			Material material = new Material();
+			material.setPrecio(Float.parseFloat(sMateriaPrecio));
+			m.setMaterial(material);
 
 		}
 

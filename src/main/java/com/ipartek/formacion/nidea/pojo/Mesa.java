@@ -112,11 +112,11 @@ public class Mesa implements Cloneable {
 	 * Calculamos el precio de la mesa en funcion de los materiales usados.
 	 * 
 	 * @see consultar todas las constantes definidas para los precios
-	 * @return int precio en €
+	 * @return float precio en €
 	 */
-	public int getPrecio() {
+	public float getPrecio() {
 
-		int resul = 0;
+		float resul = 0;
 
 		resul += this.numeroPatas * PRECIO_PATA;
 		resul += this.dimension * PRECIO_M2;
