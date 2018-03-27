@@ -5,8 +5,8 @@
 	<artifactId>nidea</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>nidea Maven Webapp</name>
-	<url>http://maven.apache.org</url>
+	<name>nidea</name>
+	<url>http://localhost:8080/nidea/</url>
 
 	<!-- variables comunes para todo el POM -->
 	<properties>
@@ -18,8 +18,8 @@
 		<javax.servlet.jstl.version>1.2</javax.servlet.jstl.version>
 	</properties>
 
-	<dependencies>
 
+	<dependencies>
 
 		<!-- Web Project 3.0 -->
 		<dependency>
@@ -58,9 +58,41 @@
 			<scope>test</scope> <!-- solo se usa para Test, cuando se crea el projecto no se usa esta libreria -->
 		</dependency>
 
+
+
 	</dependencies>
 
+
+
+
 	<build>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
+					<compilerArgument>-Xlint:all</compilerArgument>
+					<showWarnings>true</showWarnings>
+					<showDeprecation>true</showDeprecation>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+		</plugins>
+
+
 		<finalName>nidea</finalName>
 	</build>
 </project>
