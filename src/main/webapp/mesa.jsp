@@ -32,8 +32,9 @@
 		</div>
 		
 		<div class="form-group row">
-			<label for="material" class="col-sm-4 col-form-label">Selecciona Material:</label>
+			<label for="material" class="col-sm-4 col-form-label">Material:</label>
 			<select name="materialPrecio" class="col-sm-6  form-control">
+				<option value="0">-- selecciona --</option>
 				<% 
 					Material material = null;
 					for ( int i=0; i < materiales.size(); i++ ) {
