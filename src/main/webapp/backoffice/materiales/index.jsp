@@ -5,6 +5,10 @@
 
 <h1>MATERIALES DEL BACKOFFICE</h1>
 
+<div class="form-group">
+  <a class="btn btn-outline-primary col-sm-4" href="backoffice/materiales?op=<%=BackofficeMaterialesController.OP_MOSTRAR_FORMULARIO%>">Crear nuevo</a>
+</div>
+
 Buscador
 <form action = "backoffice/materiales" method="get">
 	
