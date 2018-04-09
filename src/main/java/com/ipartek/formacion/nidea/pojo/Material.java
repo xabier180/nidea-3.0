@@ -22,7 +22,7 @@ public class Material {
 	}
 
 	public String getNombre() {
-		return nombre;
+		return nombre.trim();
 	}
 
 	public void setNombre(String nombre) {

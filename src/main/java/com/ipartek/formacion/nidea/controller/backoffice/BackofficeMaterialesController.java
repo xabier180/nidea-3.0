@@ -145,17 +145,36 @@ public class BackofficeMaterialesController extends HttpServlet {
 
 	private void guardar(HttpServletRequest request) {
 		Material material = new Material();
-		if (id == -1) {
-			alert = new Alert("Creado Nuevo Material ", Alert.TIPO_PRIMARY);
-			material.setNombre("Nuevo");
-		} else {
-			alert = new Alert("Modificado Material id: " + id, Alert.TIPO_PRIMARY);
-			material.setId(id);
-			material.setNombre("Modificado");
-		}
+		material.setId(id);
+		material.setNombre(nombre);
+		material.setPrecio(precio);
 
-		request.setAttribute("material", material);
-		dispatcher = request.getRequestDispatcher(VIEW_FORM);
+		if (nombre != "" && nombre.length() <= 45 && precio > 0) {
+			if (dao.save(material)) {
+				alert = new Alert("Material guardado", Alert.TIPO_PRIMARY);
+
+			} else {
+				alert = new Alert("Lo sentimos pero no hemos podido guardar el material", Alert.TIPO_WARNING);
+			}
+			request.setAttribute("material", material);
+			dispatcher = request.getRequestDispatcher(VIEW_FORM);
+		} else {
+			if (nombre == "") {
+				alert = new Alert("Por favor, rellene el nombre del material", Alert.TIPO_WARNING);
+				request.setAttribute("material", material);
+				dispatcher = request.getRequestDispatcher(VIEW_FORM);
+			} else {
+				if (nombre.length() > 45) {
+					alert = new Alert("El material no puede exceder de los 45 caracteres", Alert.TIPO_WARNING);
+					request.setAttribute("material", material);
+					dispatcher = request.getRequestDispatcher(VIEW_FORM);
+				} else {
+					alert = new Alert("El precio del material debe ser mayor de 0", Alert.TIPO_WARNING);
+					request.setAttribute("material", material);
+					dispatcher = request.getRequestDispatcher(VIEW_FORM);
+				}
+			}
+		}
 
 	}
 
@@ -182,9 +201,8 @@ public class BackofficeMaterialesController extends HttpServlet {
 	private void mostrarFormulario(HttpServletRequest request) {
 		Material material = new Material();
 		if (id > -1) {
-			// TODO recuperar de la BBDD que es un material que existe
-			alert = new Alert("Mostramos Detalle id:" + id, Alert.TIPO_WARNING);
-			material.setId(id);
+			material = dao.getById(id);
+
 		} else {
 			alert = new Alert("Nuevo Producto", Alert.TIPO_WARNING);
 		}
