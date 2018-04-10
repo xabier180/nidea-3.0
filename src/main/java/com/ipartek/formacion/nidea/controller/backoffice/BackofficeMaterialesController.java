@@ -145,36 +145,51 @@ public class BackofficeMaterialesController extends HttpServlet {
 
 	private void guardar(HttpServletRequest request) {
 		Material material = new Material();
-		material.setId(id);
-		material.setNombre(nombre);
-		material.setPrecio(precio);
+		try {
 
-		if (nombre != "" && nombre.length() <= 45 && precio > 0) {
-			if (dao.save(material)) {
-				alert = new Alert("Material guardado", Alert.TIPO_PRIMARY);
+			material.setId(id);
+			material.setNombre(nombre);
 
-			} else {
-				alert = new Alert("Lo sentimos pero no hemos podido guardar el material", Alert.TIPO_WARNING);
+			if (request.getParameter("precio") != null) {
+				precio = Float.parseFloat(request.getParameter("precio"));
+				material.setPrecio(precio);
 			}
-			request.setAttribute("material", material);
-			dispatcher = request.getRequestDispatcher(VIEW_FORM);
-		} else {
-			if (nombre == "") {
-				alert = new Alert("Por favor, rellene el nombre del material", Alert.TIPO_WARNING);
+
+			if (nombre != "" && nombre.length() <= 45 && precio > 0) {
+				if (dao.save(material)) {
+					alert = new Alert("Material guardado", Alert.TIPO_PRIMARY);
+
+				} else {
+					alert = new Alert("Lo sentimos pero este material ya existe en la base de datos",
+							Alert.TIPO_WARNING);
+				}
 				request.setAttribute("material", material);
 				dispatcher = request.getRequestDispatcher(VIEW_FORM);
 			} else {
-				if (nombre.length() > 45) {
-					alert = new Alert("El material no puede exceder de los 45 caracteres", Alert.TIPO_WARNING);
+				if (nombre == "") {
+					alert = new Alert("Por favor, rellene el nombre del material", Alert.TIPO_WARNING);
 					request.setAttribute("material", material);
 					dispatcher = request.getRequestDispatcher(VIEW_FORM);
 				} else {
-					alert = new Alert("El precio del material debe ser mayor de 0", Alert.TIPO_WARNING);
-					request.setAttribute("material", material);
-					dispatcher = request.getRequestDispatcher(VIEW_FORM);
+					if (nombre.length() > 45) {
+						alert = new Alert("El material no puede exceder de los 45 caracteres", Alert.TIPO_WARNING);
+						request.setAttribute("material", material);
+						dispatcher = request.getRequestDispatcher(VIEW_FORM);
+					} else {
+						alert = new Alert("El precio del material debe ser mayor de 0", Alert.TIPO_WARNING);
+						request.setAttribute("material", material);
+						dispatcher = request.getRequestDispatcher(VIEW_FORM);
+					}
 				}
 			}
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			alert = new Alert("<b>" + request.getParameter("precio") + "</b> no es un precio correcto",
+					Alert.TIPO_WARNING);
 		}
+
+		request.setAttribute("material", material);
+		dispatcher = request.getRequestDispatcher(VIEW_FORM);
 
 	}
 
@@ -250,11 +265,6 @@ public class BackofficeMaterialesController extends HttpServlet {
 			nombre = "";
 		}
 
-		if (request.getParameter("precio") != null) {
-			precio = Float.parseFloat(request.getParameter("precio"));
-		} else {
-			precio = 0;
-		}
 	}
 
 }

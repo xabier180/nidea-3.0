@@ -37,7 +37,7 @@
   </div>
   <c:if test="${material.id == -1 }">
   	 <div class="form-group row">
-			   <div class="col-sm-12">
+			   <div class="col-sm-6">
 			   	  <input type="hidden" name="op" value="<%=BackofficeMaterialesController.OP_GUARDAR%>"> 	
 			      <button type="submit" class="btn btn-primary btn-lg btn-block">Crear</button>
 			  </div>
