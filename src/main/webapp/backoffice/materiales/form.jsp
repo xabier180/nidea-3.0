@@ -68,9 +68,9 @@
         				<span>¿Está seguro de que desea eliminar el material ${material.nombre}?</span>
       				</div>
       				<div class="modal-footer">
-        				<button type="button" class="btn btn-primary btn-lg btn-block" data-dismiss="modal">Cancelar</button>
+        				<button type="button" class="btn btn-primary btn-lg btn-block col-sm-6" data-dismiss="modal">Cancelar</button>
         				<a href="backoffice/materiales?id=${material.id}&op=<%=BackofficeMaterialesController.OP_ELIMINAR%>" 
-			       			class="btn btn-danger btn-lg btn-block">Eliminar</a>
+			       			class="btn btn-danger btn-lg btn-block col-sm-6">Eliminar</a>
       				</div>
     			</div>
   			</div>

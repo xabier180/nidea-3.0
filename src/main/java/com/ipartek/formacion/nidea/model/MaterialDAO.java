@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.ipartek.formacion.nidea.ejemplos.Utilidades;
 import com.ipartek.formacion.nidea.pojo.Material;
 
 public class MaterialDAO implements Persistible<Material> {
@@ -84,6 +85,9 @@ public class MaterialDAO implements Persistible<Material> {
 	@Override
 	public boolean save(Material pojo) {
 		boolean resul = false;
+
+		// Sanear el nombre
+		pojo.setNombre(Utilidades.limpiarEspacios(pojo.getNombre()));
 
 		if (pojo != null) {
 

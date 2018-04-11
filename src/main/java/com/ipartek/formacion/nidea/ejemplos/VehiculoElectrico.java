@@ -11,9 +11,17 @@ public class VehiculoElectrico extends Vehiculo {
 
 	}
 
+	public VehiculoElectrico(float potencia) {
+
+		// Cambiar super() por this() para sobrecargar el anterior constructor
+		// y no el primero
+		this();
+		this.potencia = potencia;
+	}
+
 	@Override
 	public void arrancar() {
-		// super.arrancar();
+		Vehiculo.dimeMatricula();
 		System.out.println("Pulsar boton encendido");
 
 	}
