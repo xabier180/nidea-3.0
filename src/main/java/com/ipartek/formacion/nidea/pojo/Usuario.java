@@ -2,31 +2,35 @@ package com.ipartek.formacion.nidea.pojo;
 
 public class Usuario {
 
+	public static final int ROL_ADMIN = 1;
+	public static final int ROL_USUARIO = 2;
 	private int id;
 	private String nombre;
-	private String password;
-	private int id_rol;
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public int getId_rol() {
-		return id_rol;
-	}
-
-	public void setId_rol(int id_rol) {
-		this.id_rol = id_rol;
-	}
+	private String pass;
+	private Rol rol;
 
 	public Usuario() {
 		super();
 		this.id = -1;
+		this.pass = "";
 		this.nombre = "";
+		this.rol = new Rol();
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+
+	public Rol getRol() {
+		return rol;
+	}
+
+	public void setRol(Rol rol) {
+		this.rol = rol;
 	}
 
 	public Usuario(int id2, String nombre2) {
@@ -53,7 +57,7 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", nombre=" + nombre + "]";
+		return "Usuario [id=" + id + ", nombre=" + nombre + ", pass=" + pass + ", rol=" + rol + "]";
 	}
 
 }
